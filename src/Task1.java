@@ -18,6 +18,8 @@ public class Task1 {
         hh.insert("aaaa");
         hh.insert("aaa");
 
+        hh.decreaseKey(3, "");
+
         System.out.println(hh.extractMin());
         System.out.println(hh.extractMin());
         System.out.println(hh.extractMin());
@@ -54,6 +56,7 @@ public class Task1 {
         System.out.println(h.extractMin());
         System.out.println(h.extractMin());
         System.out.println();
+
 
 //        Graph.Edge ff = new Graph.Edge();
 //        hhh.insert(new Graph.Edge());

@@ -5,6 +5,7 @@ public class Heap<T> {
     private int size;
     private List<Node> heap;
     final private Comparator<T> comparator;
+//    Map<T, Integer> pos;
 
     private class Node {
         public T element;
@@ -14,6 +15,7 @@ public class Heap<T> {
     public Heap( Comparator<T> comparator ) {
         size = 0;
         heap = new ArrayList<Node>();
+//        pos = new HashMap<T, Integer>();
 
         this.comparator = comparator;
 
@@ -25,6 +27,7 @@ public class Heap<T> {
         node.element = element;
         node.position = size-1;
         heap.add(node);
+//        pos.put(element, size-1);
         decreaseKey( node );
     }
 
@@ -41,6 +44,7 @@ public class Heap<T> {
         T returnNode = top();
         exchange( 0, size-1 );
         heap.remove(size-1);
+//        pos.remove(returnNode);
         size--;
         
         if (size>0) {
@@ -86,7 +90,6 @@ public class Heap<T> {
         return modified;
     }
 
-
     private void heapify( final Node node ) {
         int smallest;
         int index = node.position;
@@ -109,9 +112,11 @@ public class Heap<T> {
     private void exchange( final int index, final int index2 ) {
         Node temp = heap.get(index);
         temp.position = index2;
+//        pos.put(temp.element, index2);
 
         Node temp2 = heap.get(index2);
         temp2.position = index;
+//        pos.put(temp2.element, index);
 
         heap.set(index, temp2 );
         heap.set( index2, temp);
@@ -146,6 +151,7 @@ public class Heap<T> {
         for (T e: elements) {
             Node n = new Node();
             n.position = i;
+//            pos.put(e, i);
             n.element = e;
             nodes.add(n);
                     i++;
