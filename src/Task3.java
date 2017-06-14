@@ -7,8 +7,8 @@ public class Task3 {
 
     public static void main(String[] args) throws IOException {
 
-//        List<String> lines = Files.readAllLines(Paths.get("./src/dijkstraExample"));
-        List<String> lines = Files.readAllLines(Paths.get("./src/task3"));
+        List<String> lines = Files.readAllLines(Paths.get("./src/dijkstraExample"));
+//        List<String> lines = Files.readAllLines(Paths.get("./src/task3"));
 
         lines.remove(0);
         lines.remove(0);

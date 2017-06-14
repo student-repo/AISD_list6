@@ -17,18 +17,19 @@ public class DijkstraAlgorithm {
         return settledNodes;
     }
 
-    public Set<Integer> getUnSettledNodes() {
-        return unSettledNodes;
-    }
+//    public Set<Integer> getUnSettledNodes() {
+//        return unSettledNodes;
+//    }
 
     public Map<Integer, Integer> getPredecessors() {
         return predecessors;
     }
 
 
-    private Set<Integer> unSettledNodes;
+//    private Set<Integer> unSettledNodes;
     private final List<Edge> edges;
     private Set<Integer> settledNodes;
+    private Heap<Integer> unSettledNodes;
     private Map<Integer, Double> distance;
     private Map<Integer, Integer> predecessors;
 
@@ -42,18 +43,22 @@ public class DijkstraAlgorithm {
     }
 
     public void execute(Integer source) {
+        unSettledNodes = new Heap<>((o1, o2) -> o1 - o2);
         settledNodes = new HashSet<Integer>();
-        unSettledNodes = new HashSet<Integer>();
+//        unSettledNodes = new HashSet<Integer>();
         distance = new HashMap<Integer, Double>();
         predecessors = new HashMap<Integer, Integer>();
         distance.put(source, (double) 0);
-        unSettledNodes.add(source);
-        while (unSettledNodes.size() > 0) {
-            Integer node = getMinimum(unSettledNodes);
+//        unSettledNodes.add(source);
+        unSettledNodes.insert(source);
+        while (!unSettledNodes.isEmpty()) {
+//            while (unSettledNodes.size() > 0) {
+//            Integer node = getMinimum(unSettledNodes);
+            Integer node = unSettledNodes.extractMin();
             if(node != null){
                 settledNodes.add(node);
                 findMinimalDistances(node);
-                unSettledNodes.remove(node);
+//                unSettledNodes.remove(node);
             }
 //            settledNodes.add(node);
 
@@ -69,7 +74,7 @@ public class DijkstraAlgorithm {
                 distance.put(target, getShortestDistance(node)
                         + getDistance(node, target));
                 predecessors.put(target, node);
-                unSettledNodes.add(target);
+                unSettledNodes.insert(target);
             }
         }
 
