@@ -1,6 +1,3 @@
-/**
- * Created by ubuntu-master on 13.06.17.
- */
 public class Task1 {
     public static void main(String[] args) {
         Heap<Integer> h = new Heap<>((o1, o2) -> o1 - o2);
@@ -57,11 +54,8 @@ public class Task1 {
         System.out.println(h.extractMin());
         System.out.println();
 
-
 //        Graph.Edge ff = new Graph.Edge();
 //        hhh.insert(new Graph.Edge());
-
-
 
     }
 }

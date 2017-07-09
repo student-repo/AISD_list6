@@ -79,7 +79,7 @@ public class MinHeap {
     }
 
     public void decreaseKey(int vertex, double newKey) {
-        System.out.println("Entered decrease key for vertex: " + vertex + " and key:" + newKey);
+//        System.out.println("Entered decrease key for vertex: " + vertex + " and key:" + newKey);
         int i = pos[vertex];
         nodes[i].setKey(newKey);
 

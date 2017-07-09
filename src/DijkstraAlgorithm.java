@@ -13,20 +13,12 @@ import java.util.regex.Pattern;
 public class DijkstraAlgorithm {
 
 
-    public Set<Integer> getSettledNodes() {
-        return settledNodes;
-    }
-
-//    public Set<Integer> getUnSettledNodes() {
-//        return unSettledNodes;
-//    }
 
     public Map<Integer, Integer> getPredecessors() {
         return predecessors;
     }
 
 
-//    private Set<Integer> unSettledNodes;
     private final List<Edge> edges;
     private Set<Integer> settledNodes;
     private Heap<Integer> unSettledNodes;
@@ -38,31 +30,23 @@ public class DijkstraAlgorithm {
     }
 
     public DijkstraAlgorithm(List<Edge> edges) {
-        // create a copy of the array so that we can operate on this array
         this.edges = new ArrayList<Edge>(edges);
     }
 
     public void execute(Integer source) {
         unSettledNodes = new Heap<>((o1, o2) -> o1 - o2);
         settledNodes = new HashSet<Integer>();
-//        unSettledNodes = new HashSet<Integer>();
         distance = new HashMap<Integer, Double>();
         predecessors = new HashMap<Integer, Integer>();
         distance.put(source, (double) 0);
-//        unSettledNodes.add(source);
         unSettledNodes.insert(source);
         while (!unSettledNodes.isEmpty()) {
-//            while (unSettledNodes.size() > 0) {
-//            Integer node = getMinimum(unSettledNodes);
             Integer node = unSettledNodes.extractMin();
             if(node != null){
                 settledNodes.add(node);
                 findMinimalDistances(node);
-//                unSettledNodes.remove(node);
             }
-//            settledNodes.add(node);
 
-//            findMinimalDistances(node);
         }
     }
 
@@ -101,19 +85,6 @@ public class DijkstraAlgorithm {
         return neighbors;
     }
 
-    private Integer getMinimum(Set<Integer> vertexes) {
-        Integer minimum = null;
-        for (Integer vertex : vertexes) {
-            if (minimum == null) {
-                minimum = vertex;
-            } else {
-                if (getShortestDistance(vertex) < getShortestDistance(minimum)) {
-                    minimum = vertex;
-                }
-            }
-        }
-        return minimum;
-    }
 
     private boolean isSettled(Integer vertex) {
         return settledNodes.contains(vertex);
@@ -126,14 +97,9 @@ public class DijkstraAlgorithm {
         return Double.MAX_VALUE;
     }
 
-    /*
-     * This method returns the path from the source to the selected target and
-     * NULL if no path exists
-     */
     public LinkedList<Integer> getPath(Integer target) {
         LinkedList<Integer> path = new LinkedList<Integer>();
         Integer step = target;
-        // check if a path exists
         if (predecessors.get(step) == null) {
             return null;
         }
@@ -142,7 +108,6 @@ public class DijkstraAlgorithm {
             step = predecessors.get(step);
             path.add(step);
         }
-        // Put it into the correct order
         Collections.reverse(path);
         return path;
     }
